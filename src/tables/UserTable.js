@@ -2,14 +2,16 @@ import React from 'react'
 
 const UserTable = ({products,deleteItem,editProduct,setProduct}) => {
     const decrQuantity = (product)=>{
-        if(product.qty > 1){
-            setProduct(products.map((prod)=> prod.id === product.id ? {...product,qty:product.qty-1}:prod))
+        setProduct(products.map((prod)=> prod.id === product.id ? {...product,qty:product.qty-1}:prod))
+        if(product.qty <=1){
+            deleteItem(product.id)
         }
     }
     const incrQuantity = (product)=>{
         setProduct(products.map((prod)=> prod.id === product.id ? {...product,qty:product.qty+1}:prod))
     }
   return (
+    <div>
     <table cellSpacing={10} width="100%">
         <thead>
             <tr>
@@ -48,6 +50,7 @@ const UserTable = ({products,deleteItem,editProduct,setProduct}) => {
             
         </tbody>
     </table>
+    </div>
   )
 }
 

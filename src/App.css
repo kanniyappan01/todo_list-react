@@ -54,6 +54,10 @@ form button{
 .edit-product button:last-child{
   background-color: #D92B2B;
 }
+.list-container > div{
+  height: 80vh;
+  overflow-y: auto;
+}
 table thead tr th{
   text-align: start;
   font-weight: 700;

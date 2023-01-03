@@ -10,48 +10,31 @@ function App() {
     {id:2,productName:'orange',price:250,qty:1},
     {id:3,productName:'banana',price:60,qty:1},
   ];
+  const [products,setProduct]=useState(userData);
+  const [editing,setEditing]=useState(false);
   const [id,setId] = useState(4)
-  // const [productQty,setProductQty] = useState(1)
-  // setProductQty(productQty+1)
-  // prod.qty = productQty;
-  const addProduct = (prod)=>{
-    
-    const isProductExist = products.find((item)=>item.productName === prod.productName)
 
+  const addProduct = (prod)=>{
+    const isProductExist = products.find((item)=>item.productName === prod.productName)
     if(isProductExist){
-      // setProductQty(productQty+1)
-      console.log(isProductExist.qty)
-      console.log(prod)
       setProduct(products.map((item)=> item.productName === prod.productName ? {...isProductExist,qty:isProductExist.qty+1}:item))
-        
     }else{
       setId(id+1)
       prod.id = id;
       setProduct([...products,{...prod,qty:1}])
-      console.log("no")
     }
-   
   }
   const deleteItem = (id)=>{
     setProduct(products.filter((prod)=>prod.id !== id))
   }
-
-  const [products,setProduct]=useState(userData);
-
-  const [editing,setEditing]=useState(false);
-
   const initialFormState = {id:null,productName:"",price:"",qty:null};
-
   const [curentProduct,setCurentProduct] = useState(initialFormState);
 
   const editProduct = (product)=>{
-    console.log(product)
     setEditing(true)
     setCurentProduct({id:product.id,productName:product.productName,price:product.price,qty:product.qty})
   }
-
   const updateProduct = (id,updateProduct)=>{
-    console.log(id,updateProduct)
     setEditing(false)
     setProduct(products.map((product)=> (product.id === id ? updateProduct:product)))
   }
